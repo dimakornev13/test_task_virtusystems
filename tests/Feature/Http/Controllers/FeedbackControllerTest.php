@@ -6,6 +6,7 @@ use App\Contracts\Repositories\FeedbackRepositoryInterface;
 use App\Contracts\Services\Local\AbstractFeedbackService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
 use Mockery\MockInterface;
 use Tests\TestCase;
 
@@ -25,8 +26,11 @@ class FeedbackControllerTest extends TestCase
             $mock->shouldReceive('store');
         });
 
+        $file = UploadedFile::fake()->create('document.pdf', 100, 'application/pdf');
+
         $response = $this->post(route('feedback.create'), [
-            'message' => $this->faker->realTextBetween(100, 150)
+            'message' => $this->faker->realTextBetween(100, 150),
+            'attachment' => $file
         ]);
 
         $response->assertOk();

@@ -14,6 +14,6 @@ class FeedbackController extends Controller
      */
     public function __invoke(FeedbackRequest $request, AbstractFeedbackService $service)
     {
-        return $service->store($request->validated());
+        return $service->store($request->validated(), $request->file('attachment'));
     }
 }
