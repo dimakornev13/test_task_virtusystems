@@ -15,7 +15,7 @@ return new class extends Migration {
         Schema::create($this->getTable(), function (Blueprint $table) {
             $table->id();
             $table->text('message');
-            $table->string('file_path')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }

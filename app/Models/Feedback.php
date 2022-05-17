@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
+use Database\Factories\FeedbackFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Feedback
- * @property string $message
- * @property string $filePath
  * @package App\Models
  */
 class Feedback extends Model
@@ -17,7 +16,16 @@ class Feedback extends Model
 
     protected $table = 'feedback';
 
-    protected $fillable = ['message', 'file_path'];
+    protected $fillable = ['message', 'file'];
+
+    /**
+     * for testing
+     * @return FeedbackFactory
+     */
+    protected static function newFactory()
+    {
+        return FeedbackFactory::new();
+    }
 
     /**
      * @return string
@@ -30,8 +38,8 @@ class Feedback extends Model
     /**
      * @return string
      */
-    public function getFilePath(): string
+    public function getFile(): string
     {
-        return $this->file_path;
+        return $this->file;
     }
 }
