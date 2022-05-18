@@ -3,15 +3,14 @@
 namespace App\Services\Local;
 
 use \App\Contracts\Services\Local\AbstractFeedbackService;
+use App\Models\Feedback;
 use Illuminate\Http\UploadedFile;
 
 class FeedbackService extends AbstractFeedbackService
 {
-    public function store(array $data, UploadedFile $splFileInfo = null)
+    public function store(array $data, UploadedFile $splFileInfo = null): Feedback
     {
-        if ($splFileInfo) {
-            $data['file'] = $splFileInfo->store('feedback');
-        }
+        $data['file'] = !$splFileInfo ? '' : $splFileInfo->store('feedback');
 
         $model = $this->repository->store($data);
 

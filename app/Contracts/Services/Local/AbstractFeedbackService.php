@@ -3,6 +3,7 @@
 namespace App\Contracts\Services\Local;
 
 use App\Contracts\Repositories\FeedbackRepositoryInterface;
+use App\Models\Feedback;
 use Illuminate\Http\UploadedFile;
 
 abstract class AbstractFeedbackService
@@ -11,5 +12,5 @@ abstract class AbstractFeedbackService
     {
     }
 
-    abstract public function store(array $data, UploadedFile $splFileInfo = null);
+    abstract public function store(array $data, UploadedFile $splFileInfo = null): Feedback;
 }

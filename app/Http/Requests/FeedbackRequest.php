@@ -24,7 +24,8 @@ class FeedbackRequest extends FormRequest
     public function rules()
     {
         return [
-            'message' => 'required|min:50'
+            'message' => 'required|min:50',
+            'attachment' => 'file|mimes:pdf|max:10240'
         ];
     }
 }
